@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+  <link href="/stylesheets/covid19-summary.css" media="screen" rel="stylesheet" type="text/css" />
+  <title>北九州市　新型コロナウイルス感染症　陽性患者数のサマリー</title>
+</head>
+<body>
+<div class="header-panel">
+  <div class="title-info">
+    <h3>
+    北九州市　新型コロナウイルス感染症　陽性患者数のサマリー
+    </h3>
+  </div>
+  <div class="reporting-info">
+  {{ generate_date }}
+  </div>
+</div>
+<div class="calendar">
+<table class="calendar">
+  <thead><tr>
+    <th class="daytitle sun-title">日</th>
+    <th class="daytitle mon-title">月</th>
+    <th class="daytitle tue-title">火</th>
+    <th class="daytitle wed-title">水</th>
+    <th class="daytitle thu-title">木</th>
+    <th class="daytitle fri-title">金</th>
+    <th class="daytitle sat-title">土</th>
+  </tr></thead>
+  <tbody>
+    {% for dates in dates_of_weeks %}
+        <tr>
+          {% for d in dates %}
+            {% if d in number_of_cases.index %}
+              {% set status = number_of_cases['Status'][d.strftime('%Y/%m/%d')] %}
+            {% else %}
+              {% set status = 'green' %}
+            {% endif %}
+            {% set daybox_class = daybox_classes[d.isoweekday()-1] + ' ' + status + 'box' %}
+            <td class="{{ daybox_class }}"><span class="date">{{ d.strftime('%-m/%-d') }}</span><br/>
+              <span class="number">
+              {% if d in number_of_cases.index %}
+                {{ '{:,}'.format(number_of_cases['Count'][d.strftime('%Y/%m/%d')]) }}
+              {% else %}
+                &nbsp;
+              {% endif %}
+              </span>
+            </td>
+          {% endfor %}
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+<div class="footer-panel">
+この集計表は，以下の著作物を改変して利用しています。<br/>
+北九州市，【<a href="https://ckan.open-governmentdata.org/dataset/401005_kitakyushu_covid19_patients">北九州市　新型コロナウイルス感染症　陽性患者属性</a>】，クリエイティブ・コモンズ・ライセンス 表示 2.1 日本（<a href="http://creativecommons.org/licenses/by/2.1/jp/">http://creativecommons.org/licenses/by/2.1/jp/</a>）
+</div>
+</body>
+</html>
