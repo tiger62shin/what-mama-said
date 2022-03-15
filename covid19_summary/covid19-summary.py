@@ -78,6 +78,7 @@ def generate_html(number_of_patients, template_file):
         'number_of_cases': number_of_patients,
         'daybox_classes': ['daybox', 'daybox', 'daybox', 'daybox', 'daybox', 'daybox', 'daybox'],
         'generate_date': datetime.now().strftime('%Y/%-m/%-d %-H:%-M'),
+        'initial_prev_date': datetime(1900, 1, 1),
     }
     return template.render(data)
 

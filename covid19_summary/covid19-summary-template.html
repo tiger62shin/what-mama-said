@@ -29,6 +29,7 @@
     <th class="daytitle sat-title">土</th>
   </tr></thead>
   <tbody>
+    {% set gbl = namespace(prev_date_year = initial_prev_date.year) %}
     {% for dates in dates_of_weeks %}
         <tr>
           {% for d in dates %}
@@ -38,7 +39,14 @@
               {% set status = 'green' %}
             {% endif %}
             {% set daybox_class = daybox_classes[d.isoweekday()-1] + ' ' + status + 'box' %}
-            <td class="{{ daybox_class }}"><span class="date">{{ d.strftime('%-m/%-d') }}</span><br/>
+            <td class="{{ daybox_class }}">
+              <span class="date">
+                {% if d.year != gbl.prev_date_year %}
+                  {{ d.strftime('%y/%-m/%-d') }}
+                {% else %}
+                  {{ d.strftime('%-m/%-d') }}
+                {% endif %}
+              </span><br/>
               <span class="number">
               {% if d in number_of_cases.index %}
                 {{ '{:,}'.format(number_of_cases['Count'][d.strftime('%Y/%m/%d')]) }}
@@ -47,6 +55,7 @@
               {% endif %}
               </span>
             </td>
+            {% set gbl.prev_date_year = d.year %}
           {% endfor %}
         </tr>
     {% endfor %}
