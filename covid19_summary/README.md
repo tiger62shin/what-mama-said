@@ -1,10 +1,10 @@
-# u–k‹ãBŽs VŒ^ƒRƒƒiƒEƒCƒ‹ƒXŠ´õÇ —z«Š³ŽÒ”v“ú–ˆWŒvƒvƒƒOƒ‰ƒ€
+# ã€ŒåŒ—ä¹å·žå¸‚ æ–°åž‹ã‚³ãƒ­ãƒŠã‚¦ã‚¤ãƒ«ã‚¹æ„ŸæŸ“ç—‡ é™½æ€§æ‚£è€…æ•°ã€æ—¥æ¯Žé›†è¨ˆãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
-u–k‹ãBŽs VŒ^ƒRƒƒiƒEƒCƒ‹ƒXŠ´õÇ —z«Š³ŽÒ”v‚ÌƒI[ƒvƒ“ƒf[ƒ^‚©‚çƒJƒŒƒ“ƒ_[Œ`Ž®‚Å“ú–ˆ‚ÌŠ´õŽÒ”‚ð•\Ž¦‚·‚é HTML ƒtƒ@ƒCƒ‹‚ðo—Í‚µ‚Ü‚·B
+ã€ŒåŒ—ä¹å·žå¸‚ æ–°åž‹ã‚³ãƒ­ãƒŠã‚¦ã‚¤ãƒ«ã‚¹æ„ŸæŸ“ç—‡ é™½æ€§æ‚£è€…æ•°ã€ã®ã‚ªãƒ¼ãƒ—ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼å½¢å¼ã§æ—¥æ¯Žã®æ„ŸæŸ“è€…æ•°ã‚’è¡¨ç¤ºã™ã‚‹ HTML ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚
 
 # DEMO
 
-[–k‹ãBŽs@VŒ^ƒRƒƒiƒEƒCƒ‹ƒXŠ´õÇ@—z«Š³ŽÒ”‚ÌƒTƒ}ƒŠ[](https://www.calcium.mydns.jp/kitakyushu_covid19_summary.html)
+[åŒ—ä¹å·žå¸‚ã€€æ–°åž‹ã‚³ãƒ­ãƒŠã‚¦ã‚¤ãƒ«ã‚¹æ„ŸæŸ“ç—‡ã€€é™½æ€§æ‚£è€…æ•°ã®ã‚µãƒžãƒªãƒ¼](https://www.calcium.mydns.jp/kitakyushu_covid19_summary.html)
 
 # Features
 
