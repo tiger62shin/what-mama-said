@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
   <link href="/stylesheets/covid19-summary.css" media="screen" rel="stylesheet" type="text/css" />
   <title>北九州市　新型コロナウイルス感染症　陽性患者数のサマリー</title>
+  <script>
+    window.onload = function() {
+        var scrollHeight = document.querySelector("div.calendar").scrollHeight;
+        document.querySelector("div.calendar").scrollTop = scrollHeight;
+    }
+  </script>
 </head>
 <body>
 <div class="header-panel">
