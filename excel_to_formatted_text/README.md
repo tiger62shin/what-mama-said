@@ -86,6 +86,7 @@ optional arguments:
 
 - Example
   - Excel ファイル
+    <img width="1046" alt="image" src="https://user-images.githubusercontent.com/101082280/166106815-8ba8dafd-88a2-4353-970a-3afc3ac624c0.png">
   - テンプレートファイル
     ```
     氏名 : {{ 氏名 }}
