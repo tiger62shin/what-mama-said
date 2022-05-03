@@ -42,18 +42,19 @@ optional arguments:
                         Excel sheet start row no
   -c STARTCOL, --startcol STARTCOL
                         Excel sheet start column no
-```
-- excelfile
+  -b BLANK_SKIP_COLUMNS, --blank-skip-columns BLANK_SKIP_COLUMNS
+                        Skip if this column is blank```
+- --excelfile
 
   入力する Excel ファイルを指定します。省略不可<br/>
   openpyxl で読み込めるものであれば Excel ファイルの形式に特に制限はありません
-- sheetname
+- --sheetname
 
   テキストファイルに出力する内容が記載されている Excel シートの名前を指定します。省略不可<br/>
   注意点
     - 出力対象となる範囲の最初の行は見出し行として使われ、見出し行のセルの値を項目名として使用します (重複していたはなりません)。
     - 出力対象となる範囲の開始行列位置は startrow, startcol で指定することができますが、終了行列位置はデータがある最大の行列位置となります。
-- outputfile
+- --outputfile
 
   出力ファイル名を指定します。出力ファイル名には {} で括って出力行データの項目名を指定することができます。例えば<br/>
   ```
@@ -65,24 +66,31 @@ optional arguments:
   data/{県}/{名前}.txt
   ```
   ディレクトリが存在しない場合には作成されます。
-- outputfile-encoding
+- --outputfile-encoding
 
   出力ファイルのエンコーディングを指定します。指定を省略した場合には 'utf8' となります。
-- outputfile-lineterminator
+- --outputfile-lineterminator
   出力ファイルの改行コードを cr, lf, crlf のいずれかで指定します。指定を省略した場合には 'lf' となります。
-- templatefile
+- --templatefile
 
   出力ファイルの書式が記載されたテキストファイルを指定します。省略不可<br/>
   テンプレートファイルは jinja2 のテンプレート構文で記載します。'{{ 項目名 }}' のように記載された部分に Excel ファイルの行の該当する項目名の列位置のデータが出力されます。
-- templatefile-encoding
+- --templatefile-encoding
 
   テンプレートファイルのエンコーディングを指定します。指定を省略した場合には 'utf8' となります。
-- startrow
+- --startrow
 
   読み込むデータの開始行位置を指定します。省略した場合には 1 となります。<br/>
   startrow で指定された行が見出し行となります。
-- startcol
+- --startcol
   読み込むデータの開始列位置を指定します。省略した場合には 1 となります。
+- --blank-skip-columns
+  指定された列の値がブランクの時、その行をスキップします。省略可<br/>
+  複数の列を指定する場合は
+  ```
+  --blank-skip-columns xxxxx --blank-skip-columns yyyyy
+  ```
+  のように指定します。
 
 - Example
   - Excel ファイル
