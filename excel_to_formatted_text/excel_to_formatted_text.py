@@ -19,7 +19,8 @@ def main():
     parser.add_argument('-te', '--templatefile-encoding', default='utf8', required=False, help='Template text file encoding')
     parser.add_argument('-r', '--startrow', default=1, type=int, required=False, help='Excel sheet start row no')
     parser.add_argument('-c', '--startcol', default=1, type=int, required=False, help='Excel sheet start column no')
-    # , choices=['rock', 'paper', 'scissors']
+    parser.add_argument('-b', '--blank-skip-columns', required=False, type=str, action='append',
+                        help='Skip if this column is blank')
 
     args = parser.parse_args()
 
@@ -32,6 +33,7 @@ def main():
     print(f'Template file encoding : {args.templatefile_encoding}')
     print(f'Start row : {args.startrow}')
     print(f'Start column : {args.startcol}')
+    print(f'Blank skip column : {args.blank_skip_columns}')
 
     lineterminator = '\n'
     if args.outputfile_lineterminator == 'cr':
@@ -39,12 +41,12 @@ def main():
     elif args.outputfile_lineterminator == 'crlf':
         lineterminator = '\r\n'
 
-    to_text(args.excelfile, args.sheetname, args.startrow, args.startcol,
+    to_text(args.excelfile, args.sheetname, args.startrow, args.startcol, args.blank_skip_columns,
             args.outputfile, args.outputfile_encoding, lineterminator,
             args.templatefile, args.templatefile_encoding)
 
 
-def to_text(excelfile, sheetname, startrow, startcol,
+def to_text(excelfile, sheetname, startrow, startcol, blank_skip_columns,
             filename_format, outputfile_encoding, lineterminator,
             templatefile, templatefile_encoding):
     wb = load_workbook(filename=excelfile, read_only=True)
@@ -60,10 +62,13 @@ def to_text(excelfile, sheetname, startrow, startcol,
     template = Template(template_text, newline_sequence=lineterminator, keep_trailing_newline=True)
 
     for row in ws.iter_rows(min_row=startrow+1):
-        filename = generate_output_filename(row, col_names, filename_format)
+        cell_values = to_dictionary(row, col_names)
+        if not is_outputtable_row(cell_values, blank_skip_columns):
+            continue
+
+        filename = generate_output_filename(cell_values, filename_format)
 #        print(filename)
 
-        cell_values = to_dictionary(row, col_names)
         text = template.render(cell_values)
 
         if is_modified(text, filename):
@@ -74,11 +79,20 @@ def to_text(excelfile, sheetname, startrow, startcol,
             print(f'{filename} is not modified.')
 
 
-def generate_output_filename(row, col_names, filename_format):
+def is_outputtable_row(cell_values, blank_skip_columns):
+    if blank_skip_columns is None:
+        return True
+    for col_name in blank_skip_columns:
+        if col_name in cell_values \
+                and (cell_values[col_name] is None or cell_values[col_name] == ''):
+            return False
+    return True
+
+
+def generate_output_filename(cell_values, filename_format):
     output_filename = filename_format
-    for col_no, col_name in col_names:
-        # print(str(col_no) + ', ' + col_name + ' : ' + row[col_no].value)
-        output_filename = output_filename.replace('{' + col_name + '}', row[col_no].value)
+    for col_name in cell_values:
+        output_filename = output_filename.replace('{' + col_name + '}', cell_values[col_name])
 
     output_filename = pathlib.Path(output_filename).resolve()
     os.makedirs(os.path.dirname(output_filename), exist_ok=True)
@@ -89,7 +103,10 @@ def generate_output_filename(row, col_names, filename_format):
 def to_dictionary(row, col_names):
     dict = {}
     for col_no, col_name in col_names:
-        dict[col_name] = row[col_no].value
+        if not row[col_no].value is None:
+            dict[col_name] = str(row[col_no].value)
+        else:
+            dict[col_name] = ''
 
     return dict
 
