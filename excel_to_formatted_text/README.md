@@ -18,7 +18,7 @@ Excel ファイルの 1 行を 1 つの書式化されたテキストファイ�
 
 ```
 usage: excel_to_formatted_text.py [-h] -x EXCELFILE -s SHEETNAME -o OUTPUTFILE [-oe OUTPUTFILE_ENCODING] [-lt {cr,lf,crlf}] -t TEMPLATEFILE [-te TEMPLATEFILE_ENCODING]
-                                  [-r STARTROW] [-c STARTCOL]
+                                  [-r STARTROW] [-c STARTCOL]　[-b BLANK_SKIP_COLUMNS]
 
 Excel to formated text
 
