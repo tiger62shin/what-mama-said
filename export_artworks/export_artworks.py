@@ -4,7 +4,7 @@ import os
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Export artworks for MPD')
+    parser = argparse.ArgumentParser(description='Export music file artworks')
     parser.add_argument('-d', '--music-dir', required=True, help='Music file directory')
     parser.add_argument('-f', '--artwork-filename', default='Folder.jpg', required=False, help='Artrwork file name')
     parser.add_argument('-F', '--force-export', action='store_true', help='Overwrite existing artwork files')
